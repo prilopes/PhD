@@ -1,0 +1,167 @@
+%% Exemplo de como usar a classe ppgccufscar.
+%% O template da monografia (quali, dissertacao ou tese)
+%% foi feito pela Profa. Sandra Fabbri.
+%% A classe ppgccufscar foi feita por Daniel Beck,
+%% Daniel Bruno e Prof. Marcio
+
+
+%%
+%% Opcoes que podem ser passadas 'a classe
+%%
+%% Todas as opcoes da classe abnt (AbnTeX) sao validas.
+%% Outras opcoes sao: quali e tese (dissertacao e' padrao)
+%%
+
+\documentclass[qualidoc]{ppgccufscar}
+
+%% pacotes que deseja usar
+%% pacotes incompativeis sao:
+%%   qualquer pacote de citacoes, como natbib, apalike, cite, etc.
+%% o pacote babel ja vem carregado com ingles e portugues
+\usepackage[latin1]{inputenc}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multirow}
+% \usepackage[T1]{fontenc}
+
+\usepackage{url}
+% \usepackage[a4paper,landscape]{geometry}
+\usepackage{lscape}
+
+% \usepackage{hyperref} 
+% \hypersetup{colorlinks=false}
+
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+%colorir linhas da tabela
+
+\newcommand{\profileSpec}{\textit{Perfil-Especialista}}
+\newcommand{\profileMPS}{\textit{Perfil-MPS.Br}}
+\newcommand{\profileTMMi}{\textit{Perfil-TMMi}}
+
+\usepackage{color}
+\newcommand{\fabiano}[1]{{\color{blue} #1}}
+\newcommand{\kamilla}[1]{{\color{black} #1}}
+\newcommand{\sandra}[1]{{\color{red} #1}}
+
+
+\titulo{Título}
+\autor{Priscilla de Abreu Lopes}
+\orientador[Orientadora]{Profa. Dra. Heloisa de Arruda Camargo}
+% \co-orientador{Prof. Dr. Fabiano Ferrari}
+\areaconcentracao{Inteligência Artificial}
+\data{Março/2014}
+
+% epigrafre, agradecimentos sao feitos 'na mao'.
+% um dia eu faco alguns comandos para eles ;)
+
+\begin{document} 
+
+
+\capa
+\folhaderosto
+
+%\dedicatoria{.........}
+
+%\begin{agradecimentos}
+%Agradeço ao \LaTeX por não ter vírus de macro.
+%Agradeço ao Linus Torvalds por ter feito o Linux.
+%Agradeço ao Bill Gates por deixar-nos piratear seus softwares.
+%\end{agradecimentos}
+
+%\epigrafe{texto}{autor}
+
+\begin{resumo}
+
+
+\textbf{Contexto:} ...
+\textbf{Objetivo:} ... 
+\textbf{Metodologia:} ...
+\textbf{Resultados:} ...
+\textbf{Conclusões:} ...
+
+
+\palavraschave{teste de software, melhoria de processo, TMMi, definição de processo, empresas de pequeno porte}
+
+\end{resumo}
+
+
+
+\begin{abstract}
+
+....
+
+\keywords{...}
+
+\end{abstract}
+
+\listoffigures
+\listoftables
+
+%% sumario
+\tableofcontents
+
+%% aqui comeca o texto da monografia
+%% voce pode dividir o conteudo em varios arquivos.
+%% por exemplo, intro.tex, fundamentacao.tex, desenvolvimento.tex, conclusao.tex.
+%% dai, vc inclui aqui assim: \input{intro.tex} e assim por diante.
+
+% \include{Cap1}
+% \include{Cap2}
+
+\input{Cap1}
+\input{Cap2}
+
+
+
+%% coloque aqui o seu arquivo .bib
+%% IMPORTANTE: nao use bibliographystyle!
+%% o estilo ja vem definido.
+\bibliography{references}
+
+%% de acordo com o template, o glossario vem
+%% depois das referencias e deve estar em ordem
+%% alfabetica.
+%% depois de muito esforco consegui fazer com que
+%% o glossario ficasse em ordem alfabetica automaticamente.
+%% ainda nao sei a escalabilidade do algoritmo :(
+
+%% DICA: voce pode ir definindo os acronimos ao longo do texto.
+%% Por exemplo, no capitulo 1, vc ta escrevendo:
+%% Segundo Fulano, Model-Driven Development (MDD)\acronym{MDD}{Model-Driven Development} é uma técnica bla bla bla...
+
+
+\acronym{PISO}{Polo das Indústrias de Software}
+\acronym{MPT.Br}{Melhoria do Processo de Teste de Software Brasileiro}
+\acronym{MPS.Br}{Melhoria do Processo de Software Brasileiro}
+\acronym{TMMi}{Test Maturity Model integration}
+\acronym{CMMI}{Capability Maturity Model Integration}
+\acronym{KITMap}{Knowledge and Improvement Map}
+\acronym{KITTool}{Knowledge and Improvement on Test Tool}
+\acronym{PA}{Process Area}
+\acronym{SG}{Specific Goal}
+\acronym{SP}{Specific Pratic}
+
+\listofacronyms
+
+% \apendice
+
+% \chapter{Explicação do que é apêndice}
+% 
+% \begin{resumocap}
+% Dá pra usar o resuminho aqui também.
+% \end{resumocap}
+% 
+% Segundo a norma, apêndice é um documento elaborado pelo autor a fim de complementar sua argumentação sem afetar a unidade nuclear do trabalho.
+% 
+% \chapter{Outro apêndice}
+% 
+% Só pra ilustrar mais de um apêndice.
+
+% \anexo
+%\input{anexoa}
+
+
+
+
+\end{document}
