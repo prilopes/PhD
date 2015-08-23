@@ -1,0 +1,268 @@
+\chapter{Conceitos Gerais} \label{chConceitos}
+
+O Aprendizado de Máquina (AM) refere-se à investigação de métodos computacionais capazes de adquirir conhecimento de forma automática. Desde a formalização do surgimento desta área de pesquisa, na década de 80 \cite{Langley2011}, distintas abordagens foram propostas para a realização do processo de aprendizagem.
+
+Aspectos como a evolução e ampliação do acesso a novas tecnologias e a internet tornaram propício o surgimento e desenvolvimento de diferentes e novos domínios. Para as novas características e desafios que despontaram neste contexto, as técnicas mais clássicas de AM já não obtiveram o mesmo sucesso e, então, começaram a surgir novas abordagens na tentativa de encontrar métodos capazes de lidar com novas peculiaridades desses domínios.
+
+Neste capítulo são apresentados conceitos gerais que fundamentam a compreensão do problema tratado neste trabalho, bem como a proposta de pesquisa apresentada. Tais conceitos relacionam-se principalmente a aprendizado semissupervisionado e aprendizado em fluxos contínuos de dados.
+
+\section{Aprendizado Semissupervisionado} \label{chConceitos:semissupervisonado}
+
+No contexto de AM, a inferência indutiva é um dos principais mecanismos utilizados para derivar conhecimento novo e predizer escritos futuros. No aprendizado indutivo o conhecimento é aprendido por meio de inferência indutiva sobre um conjunto de dados: objetos (também chamados de exemplos ou instâncias) que são descritos por um conjunto de atributos \cite{mitchell1997}. O aprendizado indutivo pode ser dividido em três abordagens: supervisionada, não supervisionada e semissupervisionada.
+
+\subsection{Aprendizado Supervisionado e Não Supervisionado}
+
+Abordagens supervisionadas são aquelas que realizam a extração de conhecimento pelo desenvolvimento de um modelo geral baseado em um conjunto de dados que possui um atributo especial, chamado classe, que representa o conceito que se deseja aprender. Um exemplo de um conjunto de dados é dito rotulado se a classe à qual pertence é conhecida. Métodos conhecidos como de classificação tipicamente utilizam-se de conjuntos totalmente rotulados e, portanto, pertencem à categoria de aprendizado supervisionado. Estes métodos são amplamente utilizados por produzirem bons resultados \cite{Witten2005}.
+
+A maioria dos métodos de classificação utilizam-se de um conjunto de exemplos de treinamento para a construção de um classificador. Tais classificadores são constituídos de um conjunto de regras ou uma estrutura da qual possam ser extraídas regras de classificação. Um conjunto de exemplos de teste independente do conjunto de treinamento é aplicado ao classificador no intuito de verificar a qualidade do resultado obtido na etapa de construção. Se a avaliação for satisfatória, o classificador poderá ser aplicado a conjuntos de novos exemplos com classe desconhecida. Alguns métodos podem requerer um ajuste do classificador após um período de tempo ou o aumento do volume de dados.
+
+Aplicações de árvores de decisão \cite{quinlan1986}, redes neurais \cite{bishop1995}, métodos estatísticos \cite{duda1973} e genéticos \cite{Goldberg1989} fazem parte do conjunto de paradigmas para a resolução do problema de classificação \cite{mitchell1997}. Existem métodos, como o $K$-\emph{Nearest Neightbors} \cite{cover1967}, que não geram classificadores, mas utilizam a informação de rótulos para classificar novos exemplos, atribuindo classes por meio de métricas de similaridade.
+
+Variações de métodos de classificação baseados na teoria de conjuntos \emph{fuzzy} \cite{zadeh1965} podem realizar a indução de regras que permitem a representação de conhecimento impreciso a partir de um conjunto de dados  \cite{pedrycz1998}. Sistemas neuro-\emph{fuzzy} \cite{klose2001} se utilizam de algoritmos de aprendizado derivados da teoria de redes neurais para gerar regras \emph{fuzzy}. Outras bordagens são baseadas em árvores de decisão, que podem ser induzidas e, posteriormente, ter regras extraídas da estrutura resultante \cite{quinlan1993}. Propostas para extensões chamadas árvores de decisão \emph{fuzzy} também podem ser encontradas na literatura \cite{janikow1998, cintra2012}.
+
+Estratégias evolutivas, como Algoritmos Genéticos, são utilizados na otimização e criação de sistemas \emph{fuzzy}. Inicialmente, os chamados Sistemas \emph{Fuzzy} Genéticos, possuíam grande foco na geração de sistemas com alta acurácia \cite{Cordon2011}. Este paradigma foi modificado e há nas pesquisas mais recentes uma preocupação em aproveitar o potencial de interpretabilidade dos conjuntos \emph{fuzzy} para a geração e otimização de sistemas que, além de alta acurácia, sejam mais claros e interpretáveis para seres humanos \cite{Cordon2011, Fazzolari2013}.
+
+Apesar dos bons resultados produzidos por técnicas supervisionadas, é possível que as classes não estejam disponíveis para determinados domínios, impedindo sua aplicação. Neste contexto normalmente são aplicadas técnicas não supervisionadas de aprendizado.
+
+Agrupamento de dados é uma típica técnica não supervisionada, ou seja, um processo capaz de realizar aprendizagem a partir de um conjunto de dados não rotulado. A aplicação de agrupamento tem como objetivo definir uma possível partição dos dados em grupos, de forma que exemplos semelhantes pertençam a um mesmo grupo e exemplos distintos pertençam a grupos distintos \cite{jain1999}. Essa divisão dos dados é baseada em métricas que determinam a relação de dissimilaridade ou similaridade entre diferentes exemplos.
+
+As diferentes técnicas de agrupamento podem ser divididas nas seguintes categorias \cite{han2012}:
+
+\begin{description}
+\item[Hierárquico:] cria uma decomposição hierárquica de um conjunto de exemplos de acordo com algum critério \cite{Day1984, Kaufman1990, zhang1996};
+\item[Particional:] constrói uma partição inicial de um conjunto de exemplos e, por meio de um processo iterativo, busca melhorar a partição, mudando exemplos de grupo baseado, geralmente, em uma medida de distância \cite{macqueen1967, Bezdek1981, Kaufman1990};
+\item[Baseado em Densidade:] baseado em funções densidade, é capaz de criar uma partição ou uma decomposição hierárquica de um conjunto de exemplos. A ideia geral é que para cada exemplo de um grupo, a vizinhança, dentro de um raio determinado, possui um mínimo de pontos, ou seja, a densidade na vizinhança deve exceder um limiar definido. O formato de uma vizinhança é determinado pela escolha da função de distância utilizada analisar pares de exemplos. \cite{Ester1996, Hinneburg1998, Ankerst1999};
+\item[Baseado em Grades:] todas as operações de agrupamento são realizadas dentro de uma estrutura de grades (\emph{grid}), que é uma divisão do espaço dos exemplos em um número finito de células \cite{Wang1997, Sheikholeslami1998}.
+\end{description}
+
+É relevante mencionar que dentro dos conjuntos descritos é possível encontrar técnicas que utilizam conceitos da teoria de conjuntos \emph{fuzzy}. O \emph{Fuzzy} $C$-\emph{Means} (FCM) \cite{Bezdek1981}, por exemplo, é uma proposta pioneira, uma das primeiras extensões \emph{fuzzy} do algoritmo $k$-\emph{means} \cite{macqueen1967}.
+
+O algoritmo $k$-\emph{means} é um dos mais populares e simples algoritmos de agrupamento, ainda sendo amplamente utilizado e, muitas vezes, servindo de base ao desenvolvimento de novos algoritmos. O objetivo do $k$-\emph{means} é agrupar os dados em $k$ grupos disjuntos, de maneira que a soma das distâncias entre os exemplos pertencentes a um grupo e seu respectivo centro seja mínima. O centro de grupo, ou protótipo, representa o ponto médio dos pontos pertencentes a um determinado grupo. No FCM a partição dos dados é realizada em grupos que podem ser não disjuntos, cada exemplo possuindo um grau de pertinência para cada $k$ grupo.
+
+Problemas como forte dependência de medidas de distância e normalização dos dados, definição do número correto de grupos para a divisão são observados quando aplicadas técnicas de agrupamento não supervisionadas.
+
+O crescimento acelerado de conjuntos de dados em muitos domínios torna a rotulação manual e total dos dados onerosa. A aplicação de técnicas supervisionadas pode ser prejudicada por utilizar apenas uma pequena quantidade de dados rotulados. Ao mesmo tempo, a utilização de técnicas não supervisionadas desconsideraria totalmente esse conhecimento prévio disponível no processo de aprendizagem. Nesse contexto, surge a ideia de aprendizado semissupervisionado, apresentada na Seção \ref{chConceitos:semissupervisonado:abordagens}.
+
+\subsection{Abordagens de Aprendizado Semissupervisionado}  \label{chConceitos:semissupervisonado:abordagens}
+
+A ideia de exploração de informações rotuladas e não rotuladas pelo mesmo processo de aprendizado, chamado aprendizado semissupervisionado, data da década de 80 \cite{Pedrycz1985, Board1989}, mas vem sendo mais explorada, principalmente, na última década \cite{Chapelle2006, Schwenker2014}.
+ 
+O aprendizado semissupervisionado tem como base técnicas supervisionadas ou não supervisionadas, adaptadas a fim de realizar a aprendizagem utilizando conjuntos parcialmente rotulados e/ou algum outro tipo de informação prévia já disponível.
+
+Um número crescente de publicações e conferências sobre aprendizado semissupervisionado pode ser observado, sendo que as técnicas propostas têm sido aplicadas com sucesso, especialmente, em processamento de imagens \cite{Bensaid1996,Grira2006,Pedrycz2008} e classificação de textos \cite{Liu2003,Geng2009}.
+
+As publicações sugerem e analisam modificações de métodos já conhecidos a fim de considerar sua aplicação a um conjunto com maioria de dados não rotulados e uma pequena parte de dados rotulados. A obra de \citeonline{Zhu2009} apresenta de forma resumida algumas tendências e características para classificação semissupervisionada, como \emph{self-training}, \emph{co-training} e \emph{generative models} \cite{Chapelle2006}, e apontamentos a respeito de outras formas de aprendizado semisupervisionado, como por agrupamento.
+
+A utilização de métodos de agrupamento em aprendizado semissupervisionado pode ocorrer de duas formas: colaboração na rotulação do conjunto de dados ou agrupamento considerando informação prévia. No primeiro caso, algoritmos de agrupamento são aplicados ao conjunto de dados não rotulado para gerar grupos que, posteriormente, serão rotulados por algum outro método, com base na porção rotulada do conjunto. No segundo caso, métodos consagrados de agrupamento são modificados a fim de implementar a semissupervisão já no processo de geração de grupos e, em alguns casos, poder definir rótulos para estes grupos.
+
+Chama-se de agrupamento semissupervisionado aquele realizado por métodos que incluem mecanismos para a consideração da informação dos rótulos pré-existentes (a informação pode vir na forma de rótulos ou não) no processo de geração de grupos. Os mecanismos utilizados incluem: modificação da função objetivo, para que inclua satisfação de restrições \cite{Pedrycz1997}; Reforço de restrições durante o processo de agrupamento \cite{Wagstaff2001,Basu2004,Grira2005,Grira2008}; Inicialização e restrição do agrupamento com base nos exemplos rotulados \cite{Bensaid1996,Bensaid1998, Labzour1998,Basu2002}.
+
+Os métodos desta classe podem ser divididos em duas abordagens para incorporação de semissupervisão, dependendo do conhecimento disponível: abordagem por sementes e abordagem por restrições entre pares. As sementes compõem uma parte do conjunto de dados que pode ser utilizada para estabelecer restrições ao algoritmo, restrições entre pares de dados e para definição de rótulos de grupos. As restrições entre pares podem ser da forma \emph{must-link}, indicando que um par de exemplos deve pertencer ao mesmo grupo, ou \emph{cannot-link}, indicando que os exemplos do par devem pertencer a grupos distintos.
+
+O agrupamento fuzzy semissupervisionado ocorre quando são incluídos mecanismos de semissupervisão em métodos de agrupamento fuzzy. A maior parte das publicações coloca a abordagem de \citeonline{Pedrycz1985} como o primeiro trabalho na área de agrupamento \emph{fuzzy} semi-supervisionado. Anos após a primeira publicação, \citeonline{Pedrycz1997} comentam sobre a falta de atenção dada aos mecanismos de supervisão parcial e discutem mais amplamente suas ideias.
+
+Ainda hoje é possível identificar novas propostas de métodos semissupervisionados, uma vez que questões como o volume de dados e custo de rotulação manual de exemplos persiste. A proposta do trabalho \cite{Hamasuna2011} introduz o conceito de tolerância entre grupos, utilizado em conjunto com restrições entre pares de exemplos para a construção de um novo algoritmo de agrupamento semissupervisionado baseado no FCM. \citeonline{Yan2011} utilizam um conjunto de dados rotulados para inicialização e criação de restrições de pares de exemplos, extraídos a partir dos rótulos, durante o processo de agrupamento explorado dentro do contexto de categorização de documentos. O algoritmo \emph{Data Understanding using Semi-Supervised Clustering} \cite{Bhatnagar2012} não necessita de parâmetros e processa os dados uma única vez, utilizando uma porção de exemplos rotulados para a identificação de pequenos grupos dentro das classes. \citeonline{Shamshirband2014} propõem o \emph{D-FICCA}, um algoritmo de agrupamento que integra uma modificação, baseada em densidade e lógica \emph{fuzzy}, para o algoritmo de competição imperialista \cite{Atashpaz2007}. Em \cite{Zhenpeng2014} é proposto um algoritmo de agrupamento semissupervisionadobaseado no $k$-\emph{means} e ganho de informação para escolha dos protótipos incias. O trabalho de \citeonline{Schwenker2014} traz uma revisão atual de outros métodos de agrupamento semissupervisionado.
+
+As técnicas de aprendizado citadas e referenciadas nesta seção consideram características particulares para os dados disponíveis. Para essas propostas assume-se que o conjunto de dados é finito, os exemplos seguem uma distribuição estática e estão disponíveis para acesso sempre que necessário durante o processo de aprendizagem.
+
+A evolução da tecnologia, a internet e o aumento significativo de seu número de usuários propiciaram o surgimento de domínios para os quais as características assumidas pelas abordagens mais clássicas de aprendizado não são verdadeiras. Nesse contexto, teve origem uma nova abordagem de tratamento dessa forma de aprendizado, denominado de aprendizado em fluxo contínuo de dados.
+
+\section{Aprendizado em Fluxos Contínuos de Dados}  \label{chConceitos:FCD}
+
+Existe hoje uma variedade de sistemas que produzem grande quantidade de dados em curto espaço de tempo, como monitoração de tráfego de rede \cite{Aggarwal2008,Yu2009,Zhang2012,Breve2013}, redes de sensores \cite{gama2007,Pan2007,Zhang2012,Bouchachia2014}, mineração de \emph{clicks} na \emph{web} \cite{Marin2013}, medida de consumo de energia \cite{DeSilva2011,Zhang2012}, fraude de cartão de crédito \cite{wu2012}, mineração de textos da \emph{web} \cite{FdezRiverola2007,Cheng2011,Kmieciak2011,Nahar2014}, rastreamento visual \cite{Liu2014}, olfação artificial \cite{DeVito2012}, pesquisa meteorológica, mercado de ações e registros de supermercados \cite{Yogita2013}.
+
+Estes conjuntos de dados têm tamanho indefinido, potencialmente infinito, e podem gerar exemplos com distribuição estatística mutável de acordo com o tempo \cite{Gama2010}.
+
+O surgimento e crescimento deste tipo de sistemas impulsionaram a pesquisa por técnicas que pudessem realizar a aprendizagem considerando as características específicas por estes domínios, referidos como Fluxos Contínuos de Dados (FCD) (em inglês \emph{Data Streams} ou \emph{Streaming Data}). A Figura \ref{Fig:scopusStream} traz um gráfico que mostra uma visão geral do crescimento no número de publicações sobre aprendizado/mineração em FCD.
+
+\begin{figure}[!htb]
+	\centering
+	\include{plots/scopusStream}
+	\caption{Progressão anual do número de publicações em inglês considerando o resultado de busca realizada na base Scopus, em 10 de janeiro de 2015, pela combinação dos termos \emph{learning}/\emph{mining} e \emph{data streams}/\emph{streaming data}
+	%string (TITLE-ABS-KEY("mining") AND TITLE-ABS-KEY("data stream")) OR(TITLE-ABS-KEY("mining") AND TITLE-ABS-KEY("streaming data")) OR(TITLE-ABS-KEY("learning") AND TITLE-ABS-KEY("data stream")) OR(TITLE-ABS-KEY("learning") AND TITLE-ABS-KEY("streaming data"))
+	}
+	\label{Fig:scopusStream}
+\end{figure}
+
+No modelo de FCD alguns ou todos os dados de entrada que serão utilizados não estão disponíveis em disco ou memória para acesso a qualquer momento, mas chegam de maneira contínua em um ou mais fluxos. FCDs diferem de conjuntos de dados convencionais em diversos aspectos \cite{Babcock2002}:
+
+\begin{itemize}
+\item Os exemplos no fluxo chegam de maneira contínua e constante;
+\item O sistema não possui controle sobre a ordem na qual os exemplos chegam para ser processados;
+\item Os fluxos tem tamanho potencialmente infinito;
+\item Uma vez que um exemplo do FCD foi processado, ele é descartado ou arquivado. Estes exemplos não podem ser recuperado de forma simples, pois guardá-los em memória ou disco seria inviável.
+\end{itemize}
+
+No contexto de aprendizado em FCD, podemos identificar duas abordagens distintas: baseado em exemplos e baseado em atributo.
+
+Os algoritmos de aprendizado em FCD baseado em atributos consideram um conjunto de múltiplos FCD e o objetivo do aprendizado é identificar padrões de comportamento entre os diferentes conjuntos, remetendo ao aprendizado de séries temporais. A Figura \ref{Fig:AgrupMultiStream} apresenta um \emph{framework} popular para o agrupamento de múltiplos FCD. Algoritmos de classificação de múltiplos FCD seguem esquema parecido.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/multiStream}
+	\caption{\emph{Framework} para agrupamento baseado em atributo (múltiplos FCD) \cite{Silva2013}}\label{Fig:AgrupMultiStream}
+\end{figure}
+
+Alguns trabalhos na literatura seguem a abordagem baseada em atributos. O algoritmo \emph{MINETRAC} \cite{Casas2011} combina técnicas de aprendizado não supervisionado e semissupervisionado para identificação e classificação de diferentes classes de fluxos de tráfego de internet de características similares. Uma proposta de potencial estrutura para a representação de exemplos de um FCD de forma compacta é apresentada por \citeonline{Chen2013}, com o objetivo de, posteriormente, agrupar as estruturas de múltiplos FCD de forma não supervisionada. Para a identificação de padrões em sequências de dados, como múltiplos FCD ou séries temporais, \citeonline{Li2014} apresenta uma abordagem semissupervisionada baseada em grafo para propagação de rótulos e extensão do conjunto rotulado que realiza o treinamento de um classificador usando \emph{Support Vector Machine} (SVM). \citeonline{Patil2015} propõem um modelo de aprendizagem para o domínio de preços e demanda no fornecimento de eletricidade. A detecção e adaptação a mudanças em tendências e valores, capacidade de predição e adaptatividade do modelo são alguns dos desafios para os quais os autores buscam solução.
+
+Para este trabalho, no entanto, o foco está nos métodos que seguem a abordagem de aprendizado baseado em exemplos, na qual o objetivo é criar um modelo correspondente aos exemplos de um FCD. As estratégias descritas no restante deste documento referem-se ao aprendizado baseado em exemplos.
+
+Um dos objetivos do aprendizado em FCD é encontrar de forma rápida um modelo alternativo válido, mesmo que seja apenas aproximado, do que seria obtido com abordagens clássicas de aprendizado, devido às limitações de tempo e espaço, típicas dessa forma de aprendizado. A estratégia mais frequentemente utilizada para representar dados do FCD, para contornar a impossibilidade de armazenamento de todos os dados, é a criação de sumários ou sinopses da informação encontrada nos dados. Uma grande variedade de técnicas tem sido desenvolvidas para o armazenamento de sumários ou sinopses da informação histórica encontrada em FCD. \cite{gama2007}.
+
+É possível manter estatísticas simples de FCD, que podem ser computadas de forma incremental. Para definir a média de um FCD, por exemplo, precisamos manter o número de observações ($i$) e a soma dos valores encontrados até o momento ($\sum x_i$). Assim, com a chegada de um novo dados, a média pode ser calculada de forma incremental, como na equação \ref{Eq:mediaRecursiva}.
+
+\begin{equation} \label{Eq:mediaRecursiva}
+\bar{x}_{i} = \frac{(i-1) \times \bar{x}_{i-1} +  x_{i}}{i}
+\end{equation}
+
+De maneira semelhante podem ser definidas outras estatísticas, como desvio padrão e coeficiente de correlação entre dois fluxos. O interessante nessas fórmulas é poder manter estatísticas exatas sobre uma sequência de dados potencialmente infinita sem ter que armazenar todos os dados \cite{gama2007}.
+
+Contudo, este tipo de estatística tem uso limitado dentro do contexto de FCD, já que, na maior parte das aplicações, os dados recentes são os mais relevantes. Para contornar esse problema, uma proposta popular consiste de definir uma janela temporal que cubra os dados mais recentes.
+
+\subsection{Janelas Temporais} \label{chConceitos:FCD:Janelas}
+
+As janelas temporais são uma abordagem bastante utilizada para resolver a questão de conjuntos abertos (infinitos) como FCD. Ao invés do considerar todo o conjunto de exemplos de um fluxo, são considerados subconjuntos de exemplos ao longo do tempo. Neste modelo, uma marca temporal está associada a cada exemplo, a fim de determinar se o exemplo é válido ou não, ou seja, se está dentro ou fora de uma determinada janela temporal.
+
+Existem diferentes modelos de janelas que podem ser encontrados na literatura. Os modelos \emph{Sliding Windows}, \emph{Damped Windows} e \emph{Landmark Windows} são os mais relevantes \cite{Zhu2002}.
+
+\begin{description}
+\item[Modelo \emph{Sliding Window}:] neste modelo apenas a informação mais recente do FCD é armazenada em uma estrutura de dados cujo tamanho pode ser variável ou fixo. Esta é uma estrutura tipo \emph{First In, First Out}, que considera os exemplos de um determinado ponto no tempo atual até um ponto no passado. A Figura \ref{Fig:slidingWindow} traz um exemplo do modelo \emph{Sliding Window}. Algoritmos \cite{Ren2009} que utilizam este modelo apenas atualizam os sumários estatísticos dos exemplos dentro da janela.
+
+\item[Modelo \emph{Damped Window}:] também conhecido como \emph{time-fading}, este modelo considera a informação mais recente pela associação de pesos aos exemplos do FCD \cite{Jiang2006}: exemplos mais recentes tem peso maior que exemplos mais antigos e o peso dos exemplos diminui de acordo com o tempo. Um exemplo pode ser visualizado na Figura \ref{Fig:dampedWindow}, que mostra o decaimento do peso de acordo com o degradê dos exemplos. Algoritmos \cite{cao2006,Chen2007,Isaksson2012} baseados nesse modelo usualmente adotam uma função exponencial de decaimento para o peso dos exemplos.
+
+\item[Modelo \emph{Landmark Window}:] o processamento, neste modelo, se faz por porções disjuntas do FCD, nomeadas \emph{chunks}, que são separadas de acordo com a ocorrência de \emph{landmarks} (aparecimento de exemplos relevantes). Os \emph{landmarks} podem ser definidos de acordo com o tempo, e.g., diário ou semanal, ou quanto ao número de elementos observados desde o \emph{landmark} anterior. Quando um novo \emph{landmark} é alcançado, todos os exemplos da janela são removidos e novos são adicionados a partir desse momento. Na Figura \ref{Fig:landmarkWindow} há um exemplo para o modelo. Estratégias possíveis usando este modelo são baseadas na utilização dos modelos obtidos pelos diversos \emph{chunks} em conjunto ou como guias para próximos modelos.
+\end{description}
+
+\begin{figure}[!htb]
+        \centering
+        \begin{subfigure}[t]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{figures/slidingWindow}
+                \caption{Modelo \emph{Sliding Window}}
+                \label{Fig:slidingWindow}
+        \end{subfigure}%
+        \qquad %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[t]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{figures/dampedWindow}
+                \caption{Modelo \emph{Damped Window}}
+                \label{Fig:dampedWindow}
+        \end{subfigure}
+        \qquad %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+        %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[t]{0.4\textwidth}
+        		\includegraphics[width=\textwidth]{figures/landmarkWindow}
+        		\caption{Modelo \emph{Landmark Window}}
+        		\label{Fig:landmarkWindow}
+        \end{subfigure}
+        \caption{Exemplos ilustrativos de modelos de janela temporal \cite{Silva2013}}\label{Fig:modeloJanelas}
+\end{figure}
+
+Além das características mencionadas a respeito do volume de exemplos, há também um componente temporal inerente a aprendizado em FCD. Os dados podem evoluir de acordo com o tempo e assim a distribuição do conjunto pode ser alterada. Deste modo, algoritmos que apenas sugerem adaptações para contornar as questões de volume de exemplos podem não ser soluções efetivas neste contexto. Algoritmos de aprendizado em FCD devem ter foco claro na evolução dos dados \cite{aggarwal2007:Ch1}.
+
+O uso de modelos de janela temporal podem auxiliar no tratamento de um dos aspectos da evolução dos exemplos do FCD, por permitir uma avaliação de acordo com o tempo. No entanto, existem outros aspectos que podem ser explorados. A próxima seção fala sobre a difícil tarefa de identificação de desvios de conceito.
+
+\subsection{Desvios de Conceito} \label{chConceitos:FCD:Desvios}
+
+Na maioria das aplicações do mundo real, os dados são coletados durante um período de tempo. Para longos períodos, é plausível considerar que os exemplos não são independentes ou não possuem mesma distribuição. Em domínios complexos, é provável que a distribuição de classes mude de acordo com o tempo \cite{Gama2004}. Essas mudanças são conhecidas como desvios de conceito.
+
+Desvios de conceito podem ser graduais, onde há uma transição suave entre as distribuições, ou abruptas, quando a distribuição muda repentinamente.
+
+Abordagens que lidam com desvios de conceitos podem ser classificadas em duas categorias: aquelas que adaptam o modelo em intervalos regulares sem considerar que mudanças ocorreram e aquelas que primeiro detectam desvios de conceitos e, então, adaptam o modelo a essas mudanças. As abordagens da primeira categoria são aquelas que utilizam modelos de janelas temporais.
+
+As estratégias que realizam a detecção de mudanças para posterior adaptação do modelo mantêm um monitoramento, realizado pela definição de indicadores baseados no modelo. Se um desvio é detectado durante o monitoramento, são aplicadas ações para a adaptação do modelo de aprendizado.
+
+Os trabalhos \cite{Gama2004,Li2012,wu2012} trazem maiores informações sobre algumas estratégias de detecção de desvios de conceito.
+
+A seção a seguir descreve um método para indução de árvores de decisão a partir de dados que chegam de forma contínua, que serve de inspiração para variadas técnicas de aprendizado em FCD.
+
+\subsection{Árvores de Hoeffding} \label{chConceitos:FCD:HoeffdingTrees}
+
+Um dos métodos mais conhecidos e utilizados para classificação de exemplos é o aprendizado por árvores de decisão. Esses métodos induzem modelos na forma de árvores a partir dos dados disponíveis, onde cada nó contém um teste para um atributo, cada ramo uma possibilidade de valor para o teste e cada folha a predição de uma classe.
+
+Uma árvore de decisão é aprendida pela recursiva troca de folhas por nós de teste. O atributo relacionado ao teste é escolhido pela comparação dos atributos disponíveis, de acordo com alguma métrica.
+
+Métodos clássicos de aprendizado de árvores de decisão \cite{quinlan1986,quinlan1993} consideram que todos os exemplos de treinamento podem ser armazenados simultaneamente na memória principal, por isso, são limitados no número de exemplos dos quais podem aprender. Outros métodos consideram que os dados estão disponíveis em disco e realizam o aprendizado acessando sequencial e repetidamente os dados.
+
+\citeonline{Domingos2000} propõem uma árvore de decisão capaz de aprender em domínios \emph{online}, onde o conjunto de dados é potencialmente infinito, mas sua distribuição é estática. Esse método é conhecido como Árvore de Hoeffding (AH).
+
+Uma AH requer que cada exemplo seja lido e processado apenas uma vez. A escolha do atributo para um nó da árvore é baseada em um pequeno subconjunto de exemplos treinamento. Dado um fluxo de exemplos, os primeiros serão usados para escolher o atributo da raiz. Escolhido o atributo raiz, os próximos exemplos são passados às folhas correspondentes e usados para escolher os atributos apropriados para a substituição por nós de teste e assim em diante. Em cada nó folha, o rótulo é escolhido de acordo com a maioria de exemplos da mesma classe presentes na folha.
+
+Para definir o momento de criação de um nó teste, o limiar de Hoeffding \cite{} é utilizado, sendo desnecessário definir um número fixo de exemplos. O objetivo ao utilizar esse índice é garantir que, com alta probabilidade, o atributo escolhido usando um pequeno conjunto de exemplos é o mesmo que seria escolhido a partir dos infinitos exemplos.
+
+No mesmo trabalho, os autores sugerem uma implementação de um sistema de árvore de decisão baseado em AH, chamado \emph{Very Fast Decision Tree} (VFDT.) O sistema VFDT constrói árvores de decisão usando memória e tempo por exemplo constantes, podendo incorporar dezenas de milhares de exemplos por segundo.
+
+Extensões de AH consideram outros métodos para determinar os rótulos nas folhas, podendo ser construído um modelo dentro de cada folha, a partir dos exemplos contidos na folha, para classificação de novos exemplos. Também são implementadas outras formas para determinar o momento de divisão de um nó folha e detecção e adaptação a desvios de conceito. Algumas dessas extensões são apresentadas no Capítulo \ref{chRevisao}.
+
+O algoritmo de AH original considera que todos os exemplos do conjunto contínuo são rotulados. Essa realidade não é verdadeira para todas as aplicações FCD. A próxima seção apresenta algumas questões associadas especificamente a métodos de agrupamento em FCD, que consideram exemplos não rotulados no processo de aprendizagem.
+
+\subsection{Agrupamento em Fluxos Contínuos de Dados} \label{chConceitos:FCD:Clustering}
+
+Pela rápida e contínua chegada dos exemplos de um FCD, é natural inferir que grande parte das áreas onde algoritmos de aprendizado em FCD pode ser aplicado encaram a dificuldade da falta de rótulos disponíveis para a execução de métodos supervisionados. Devido a isso, cresce o interesse por abordagens de agrupamento em FCD.
+
+\subsubsection{Um \emph{Framework} para Agrupamento em FCD}
+
+Algoritmos de agrupamento baseados em exemplos podem ser resumidos em dois passos \cite{cao2006,Yang2006}: abstração dos dados (componente\emph{online}) e agrupamento (componente \emph{offline}), ilustrados na Figura \ref{Fig:onlineOffline}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/onlineOffline}
+	\caption{\emph{Framework} \emph{online-offline} \cite{Silva2013}}\label{Fig:onlineOffline}
+\end{figure}
+
+A fase \emph{online}, abstração dos dados, sumariza os dados do FCD com o auxílio de estruturas particulares para lidar com restrições de espaço e memória das aplicações FCD. Essas estruturas de sumarizam os dados para preservar o significado dos objetos originais sem a necessidade de armazená-los. Estruturas frequentemente utilizadas são vetores de atributos, arranjos de protótipos e grades de dados. Essas estruturas são melhor detalhadas na Seção \ref{chConceitos:FCD:Sumario}.
+
+Para a contínua sumarização dos exemplos que chegam e dar maior importância aos exemplos mais recentes, uma abordagem popular é a definição de janelas temporais, como apresentado na Seção \ref{chConceitos:FCD:Janelas}.
+
+Durante o passo de abstração, algoritmos de agrupamento em FCD devem utilizar mecanismos para detecção de \emph{outliers} que sejam capazes de diferenciar verdadeiros \emph{outliers} de evolução de grupos (Seção \ref{chConceitos:FCD:Desvios}), uma vez que a distribuição dos dados pode variar de acordo com o tempo.
+
+Na fase \emph{offline} é possível obter uma partição dos dados pelo passo de agrupamento. Neste momento, pode ser necessária a definição de alguns valores de entrada (número de grupos, por exemplo) para que seja possível ter uma visão geral dos grupos do FCD. Algoritmos de agrupamento tradicionais podem ser utilizados considerando o conjunto de estruturas de sumarização para encontrar uma partição dos dados. O formato dos grupos encontrados está ligado ao algoritmo de agrupamento empregado, por exemplo, o $k$-\emph{means} \cite{macqueen1967} gera grupos hiperesféricos enquanto o DBSCAN \cite{Ester1996} é capaz de descobrir grupos de formatos aleatórios.
+
+O \emph{framework} apresentado nesta seção é frequentemente utilizado para o desenvolvimento de novas técnicas de agrupamento em FCD. Algumas dessas propostas são discutidas no Capítulo \ref{chRevisao}.
+
+\subsubsection{Estruturas de Sumarização de Exemplos} \label{chConceitos:FCD:Sumario}
+
+A necessidade de utilizar estruturas de sumarização do FCD já foi expressada anteriormente neste documento. Esta seção traz algumas das estruturas de sumarização frequentemente utilizadas no passo de abstração dos dados de um FCD.
+
+\paragraph{Vetor de Atributos \\}
+
+O uso de vetores de atributos para sumarização de grandes volumes de dados foi introduzido no algoritmo \emph{BIRCH} \cite{zhang1996}. Este vetor, chamado de \emph{Clustering Feature} (CF), conta com três componentes: o número de exemplos ($N$), a soma linear dos exemplos ($LN$) e a soma quadrática dos exemplos ($SS$), sendo que $LS$ e $SS$ são estruturas $n$-dimensionais, de acordo com o número de atributos do FCD. Essas componentes permitem o cálculo de métricas de grupo, como média, raio e diâmetro do grupo. 
+
+O vetor CF possui propriedades de incrementais e aditivas, ou seja, é possível inserir um novo exemplo em um CF pela atualização das estatísticas e dois CF podem ser mesclados em um terceiro vetor CF de forma simples.
+
+Algumas abordagens de aprendizado em FCD utilizam o vetor CF como descrito nesta descrição, por vezes incluindo pesos para ponderar os grupos \cite{cao2006,kranen2011}. Entretanto, há outras abordagens que utilizam variações do CF, a fim de produzir outras estatísticas.
+
+A estrutura nomeada microgrupo, usada primeiramente no algoritmo \emph{CluStream} \cite{clustream2003}, estende o conceito do vetor CF, adicionando mais duas componentes ao CF original: a soma de marcas temporais ou \emph{timestamps} ($LST$) e a soma quadrática de \emph{timestamps} ($SST$). As duas novas componentes tem o objetivo de incluir aspecto temporal na descrição de grupos, que pode ser utilizado para identificar \emph{outliers} ou desvios de conceito.
+
+A proposta do algotrimo \emph{SWClustering} \cite{Zhou2008} também sugere uma extensão para o vetor CF, chamada de \emph{Temporal CF}, que adiciona uma nova componente ao CF original: a \emph{timestamp} do exemplo mais recente a ser inserido no grupo.
+
+Algoritmos que fazem uso de microgrupos ainda podem manter um histórico dessas estruturas para determinar \emph{snapshots} do FCD, i.e., recuperar a situação da partição de grupos em um determinado momento no tempo. \cite{aggarwal2007:Ch2}
+
+\paragraph{Arranjos de Protótipos \\}
+
+Alguns algoritmos de agrupamento utilizam uma estrutura simplificada chamada Arranjos de Protótipos, que consiste em um conjunto de protótipos (medóides, centróides, etc) que sumarizam a partição dos dados.
+
+O algoritmo STREAM \cite{Guha2000} divide o FCD em partes (\emph{chunks}) e, para cada uma das partes, são definidos $2k$ exemplos representantes obtidos por uma variante do algoritmo $k$-medóides \cite{Kaufman1990}. Esse processo é repetido até que seja completado um conjunto de $m$ exemplos e, então, o agrupamento é aplicado aos protótipos com o objetivo de reduzir esse conjunto.
+
+Estratégia similar é utilizada para o algoritmo \emph{Stream LSearch} \cite{OCallaghan2002}, que os protótipos em memória. Quando a memória está cheia, o conjunto de protótipos é agrupado a fim de manter na memória apenas um subconjunto de protótipos.
+
+\paragraph{Grades de Dados \\}
+
+A sumarização dos exemplos de um FCD também pode ser feita por meio de grades \cite{cao2006,Chen2007,gama2011}, ou seja, pelo particionamento do espaço $n$-dimensional de atributos em células grade de densidade.
+
+Uma estratégia \cite{Chen2007} para a utilização de grades é a associação de um coeficiente de densidade que decresce com o tempo. A densidade de uma célula de grade é determinada pela soma das densidades de cada exemplo inserido na grade. Cada célula é representada por uma tupla $<tg,tm,D,label,status>$, onde $tg$ é a última vez que a célula foi atualizada, $tm$ é a última vez que a célula foi removida do conjunto de células válidas (não \emph{outliers}), $D$ é a densidade desde a última atualização, $label$ é o rótulo de classe da célula e $status$ indica se é uma célula normal ou esporádica (células com poucos objetos, \emph{outliers}).
+
+A manutenção das células de grade é realizada durante a fase \emph{online}. Uma célula pode se tornar esparsa se não receber exemplos por muito tempo e uma célula esparsa pode se tornar densa se receber muitos exemplos. Quando um novo exemplo chega, é verificado a célula a qual pertence e estrutura da célula é atualizada. Células com o $status$ esporádico são removidas periodicamente.
+
+\subsection{Ferramentas}
+
+Com o crescimento da pesquisa sobre aprendizado em FCD, é interessante o investimento em ferramenta de software para a aplicação das diversas técnicas propostas. Existem hoje duas ferramentas principais com este objetivo que estão disponíveis gratuitamente.
+
+\begin{enumerate}
+\item \textbf{MOA (\emph{Massive On-line Analysis}} \cite{MOA} é um \emph{framework} de código aberto que disponibiliza implementação de uma série de algoritmos e métricas para classificação e agrupamento em FCD. A ferramenta também conta com recursos para visualização dos processos de aprendizado. Está disponível pelo endereço: http://moa.cms.waikato.ac.nz/.
+
+\item \textbf{VFML (\emph{Very Fast Machine Learning})} \cite{VFML} é um pacote de implementações para mineração de FCD de alta velocidade e conjuntos de dados \emph{very large}. Está disponível pelo endereço: http://www.cs.washington.edu/dm/vfml/.
+\end{enumerate}
+
+\section{Considerações Finais}
+
+Este capítulo apresenta conceitos gerais relacionados a aprendizado semissupervisionado e em fluxos contínuos de dados, além de particularidades inerentes a estas abordagens. Esta síntese se faz necessária para situar o leitor, facilitando a compreensão do contexto investigado neste trabalho e permitindo entendimento mais claro do conteúdo que será apresentado no Capítulo \ref{chRevisao}.

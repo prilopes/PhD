@@ -1,0 +1,157 @@
+%% Exemplo de como usar a classe ppgccufscar.
+%% O template da monografia (quali, dissertacao ou tese)
+%% foi feito pela Profa. Sandra Fabbri.
+%% A classe ppgccufscar foi feita por Daniel Beck,
+%% Daniel Bruno e Prof. Marcio
+
+
+%%
+%% Opcoes que podem ser passadas 'a classe
+%%
+%% Todas as opcoes da classe abnt (AbnTeX) sao validas.
+%% Outras opcoes sao: quali e tese (dissertacao e' padrao)
+%%
+
+\documentclass[qualidoc]{ppgccufscar}
+%% pacotes que deseja usar
+%% pacotes incompativeis sao:
+%%   qualquer pacote de citacoes, como natbib, apalike, cite, etc.
+%% o pacote babel ja vem carregado com ingles e portugues
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{enumerate}
+\usepackage[inline]{enumitem}
+\usepackage{multirow}
+\usepackage{booktabs}
+%\usepackage{attachfile}
+\usepackage[algo2e,portuguese,ruled,vlined,algochapter]{algorithm2e} %inserção de algoritmos
+%\renewcommand{\nomname}{Lista de Abreviaturas}
+% \usepackage[T1]{fontenc}
+
+%\usepackage{lipsum}
+
+\usepackage{url}
+%\usepackage[a4paper,potrait]{geometry}
+%\usepackage{lscape}
+
+%\usepackage{hyperref} 
+%\hypersetup{colorlinks=true}
+
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{bigstrut}
+%colorir linhas da tabela
+
+\usepackage{color}
+\newcommand{\undecided}[1]{{\color[rgb]{0.09, 0.45, 0.27} #1}}
+\newcommand{\missingref}[1]{{\color[rgb]{0, 0, 0.55} #1}}
+\newcommand{\rewrite}[1]{{\color[rgb]{0.75, 0, 0.2} #1}}
+\newcommand{\important}[1]{{\color[rgb]{0.75, 0.30, 0} #1}}
+\newcommand{\classificacao}[1]{{\color[rgb]{0.75, 0.0, 0.80} #1}}
+\newcommand{\agrupamento}[1]{{\color[rgb]{0.0, 0.75, 0.80} #1}}
+\newcommand{\ambos}[1]{{\color[rgb]{0.75, 0.8, 0.0} #1}}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+
+\hyphenation{
+Se-mis-su-per-vi-si-o-na-do
+Se-mis-su-per-vi-si-o-na-dos
+se-mis-su-per-vi-si-o-na-do
+se-mis-su-per-vi-si-o-na-dos
+in-for-ma-ção
+learn-ing}
+
+\titulo{Mineração em Fluxos Contínuos de Dados por meio de Técnicas de Aprendizado Semissupervisionadas}
+\autor{Priscilla de Abreu Lopes}
+\orientador[Orientadora]{Profa. Dra. Heloisa de Arruda Camargo}
+% \co-orientador{Prof. Dr. Fabiano Ferrari}
+\areaconcentracao{Inteligência Artificial}
+\data{Março/2015}
+
+% epigrafe, agradecimentos sao feitos 'na mao'.
+% um dia eu faco alguns comandos para eles ;)
+
+\begin{document} 
+
+
+\capa
+\folhaderosto
+
+%\dedicatoria{.........}
+
+%\begin{agradecimentos}
+%Agradeço ao \LaTeX por não ter vírus de macro.
+%Agradeço ao Linus Torvalds por ter feito o Linux.
+%Agradeço ao Bill Gates por deixar-nos piratear seus softwares.
+%\end{agradecimentos}
+
+%\epigrafe{texto}{autor}
+
+\begin{resumo}
+
+Existe hoje uma variedade de sistemas que produzem grande quantidade de dados em curto espaço de tempo, como redes de sensores, mercado financeiro e sistemas de segurança. Estes conjuntos de dados têm tamanho indefinido, potencialmente infinito, e podem gerar exemplos com distribuição estatística mutável de acordo com o tempo. As fontes que geram esse tipo de conjuntos são conhecidas como Fluxo Contínuo de Dados (FCD). Métodos de Aprendizado de Máquina (AM) podem auxiliar a tomada de decisão no contexto de diversas aplicações pela aquisição de conhecimento utilizável a partir de um conjunto de dados. Abordagens mais clássicas de AM não são capazes de lidar com algumas características particulares de FCD. Para que seja possível realizar o aprendizado com FCD, é necessário incorporar uma variedade de mecanismos aos métodos. Desafios relacionados especificamente a FCD incluem a inviabilidade de armazenamento de todo o conjunto de dados em memória, a impossibilidade de processar um mesmo exemplo muitas vezes durante a tarefa de aprendizagem e a necessidade de manutenção para que o modelo continue representando os dados mais recentes do FCD. Métodos de aprendizado semissupervisionado vêm sendo aplicados com sucesso em conjuntos com tamanho e distribuição fixa e podem oferecer uma alternativa ao aprendizado de FCD onde existe um grande volume de dados não rotulados e uma pequena parte de dados rotulados ou alguma informação prévia sobre a relação entre esses dados. A proposta de trabalho apresentada aqui tem por objetivo investigar o aprendizado em FCD por meio de métodos semissupervisionados. Inicialmente são apresentados conceitos gerais de AM, questões específicas relacionadas ao aprendizado com dados de fluxo contínuo, e uma coletânea de abordagens que representam o estado-da-arte quanto a pesquisas no campo de aprendizado com FCD. Ao final do documento é apresentada a proposta de trabalho para investigação, desenvolvimento e análise de um método de aprendizado semissupervisionado a partir de dados de fluxo contínuo.
+
+\palavraschave{fluxos contínuos de dados, aprendizado semissupervisionado, agrupamento, classificação}
+
+\end{resumo}
+
+\begin{abstract}
+
+Nowadays there is a variety of systems that produce great quantity of data in a short time space, such as sensors networks, financial market and security systems. These data sets have undefined, potentially infinite size, and may generate examples with changing distribution through time. The sources that generate these types of sets are known as Data Streams (DS). Machine Learning (ML) methods can help decision making in several applications by acquiring usable knowledge from data sets. More classical approaches for ML are not capable of dealing with some particular characteristics of DS. For making DS learning possible, it is necessary to incorporate several mechanisms to the methods. Challenges related specifically to DS include the unviability of storing the complete data set in memory, the impossibility of processing on example multiple times during the learning task and the need for maintenance so the model continues to represent the most recent data in the DS. Semi-supervised learning methods have been applied with success to data sets of fixed size and distribution and may offer an alternative to DS learning where  there is a great volume of unlabeled data and a small part of data that is labeled or some previous information about the relation between data examples. The work proposal presented here aims to investigate DS learning by means of semi-supervised methods. Initially concepts on ML, matters relating to DS learning, and a collection of approaches that represent the state-of-the-art as for research in the field of DS learning are presented. A work proposal for investigating, developing and analyzing a method of semi-supervised learning from data in Streams is presented at the end of this document.
+
+\keywords{data streams, semi-supervised learning, clustering, classification}
+
+\end{abstract}
+
+\listoffigures
+%\listofalgorithmes
+\listoftables
+
+\input{Acronimos}
+
+\listofacronyms
+
+%% sumario
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+%% aqui comeca o texto da monografia
+%% voce pode dividir o conteudo em varios arquivos.
+%% por exemplo, intro.tex, fundamentacao.tex, desenvolvimento.tex, conclusao.tex.
+%% dai, vc inclui aqui assim: \input{intro} e assim por diante.
+
+\input{Introducao}
+\input{ConceitosIniciais}
+\input{Tecnicas}
+\input{Proposta}
+
+%% coloque aqui o seu arquivo .bib
+%% IMPORTANTE: nao use bibliographystyle!
+%% o estilo ja vem definido.
+\bibliography{prilopes,publications}
+
+%% de acordo com o template, o glossario vem
+%% depois das referencias e deve estar em ordem
+%% alfabetica.
+%% depois de muito esforco consegui fazer com que
+%% o glossario ficasse em ordem alfabetica automaticamente.
+%% ainda nao sei a escalabilidade do algoritmo :(
+
+%% DICA: voce pode ir definindo os acronimos ao longo do texto.
+%% Por exemplo, no capitulo 1, vc ta escrevendo:
+%% Segundo Fulano, Model-Driven Development (MDD)\acronym{MDD}{Model-Driven Development} é uma técnica bla bla bla...
+
+% \apendice
+% Segundo a norma, apêndice é um documento elaborado pelo autor a fim de complementar sua argumentação sem afetar a unidade nuclear do trabalho.
+% 
+% \input{ResultadosPreliminares}
+% 
+% Só pra ilustrar mais de um apêndice.
+
+% \anexo
+%\input{anexoa}
+
+\end{document}
