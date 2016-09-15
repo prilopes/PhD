@@ -1,0 +1,69 @@
+\section{Aprendizado Não Supervisionado} \label{ChAM:naosupervisionado}
+
+No contexto de AM, o aprendizado indutivo é um dos principais mecanismos para derivar conhecimento novo e predizer escritos futuros. Nessa metodologia o aprendizado ocorre por meio de inferência indutiva sobre um conjunto de exemplos, onde um exemplo (também chamado de dado, instância ou objeto) é descrito por um conjunto de atributos \cite{mitchell1997}. O aprendizado indutivo pode ser dividido em três abordagens: supervisionada, não supervisionada e semissupervisionada.
+
+Abordagens supervisionadas são aquelas que realizam a extração de conhecimento pelo desenvolvimento de um modelo geral baseado em um conjunto de exemplos que possui um atributo especial, chamado classe (ou rótulo), que representa o conceito que se deseja aprender. Um exemplo de um conjunto de exemplos é dito rotulado se a classe à qual pertence é conhecida. Métodos conhecidos como de classificação tipicamente utilizam-se de conjuntos totalmente rotulados e, portanto, pertencem à categoria de aprendizado supervisionado. Estes métodos são amplamente utilizados por produzirem bons resultados \cite{Witten2005}.
+
+%A maioria dos métodos de classificação utilizam-se de um conjunto de exemplos de treinamento para a construção de um classificador. Tais classificadores são constituídos de um conjunto de regras ou uma estrutura da qual possam ser extraídas regras de classificação. Um conjunto de exemplos de teste independente do conjunto de treinamento é aplicado ao classificador no intuito de verificar a qualidade do resultado obtido na etapa de construção. Se a avaliação for satisfatória, o classificador poderá ser aplicado a conjuntos de novos exemplos com classe desconhecida. Alguns métodos podem requerer um ajuste do classificador após um período de tempo ou o aumento do volume de dados.
+
+Aplicações de árvores de decisão \cite{quinlan1986}, redes neurais \cite{bishop1995}, métodos estatísticos \cite{duda1973} e genéticos \cite{Goldberg1989} fazem parte do conjunto de paradigmas para a resolução do problema de classificação \cite{mitchell1997}. Existem métodos, como o $K$-\emph{Nearest Neightbors} \cite{cover1967}, que não geram classificadores, mas utilizam a informação de rótulos para classificar novos exemplos, atribuindo classes por meio de métricas de similaridade.
+
+Variações de métodos de classificação baseados na teoria de conjuntos \emph{fuzzy} \cite{zadeh1965} podem realizar a indução de regras que permitem a representação de conhecimento impreciso a partir de um conjunto de exemplos \cite{pedrycz1998}. Sistemas neuro-\emph{fuzzy} \cite{klose2001} se utilizam de algoritmos de aprendizado derivados da teoria de redes neurais para gerar regras \emph{fuzzy}. Outras abordagens são baseadas em árvores de decisão, que podem ser induzidas e, posteriormente, ter regras extraídas da estrutura resultante \cite{quinlan1993}. Propostas para extensões chamadas árvores de decisão \emph{fuzzy} também podem ser encontradas na literatura \cite{janikow1998, cintra2012}.
+
+Estratégias evolutivas, como Algoritmos Genéticos, são utilizados na otimização e criação de sistemas \emph{fuzzy}. Inicialmente, os chamados Sistemas \emph{Fuzzy} Genéticos, possuíam grande foco na geração de sistemas com alta acurácia \cite{Cordon2011}. Este paradigma foi modificado e há nas pesquisas mais recentes uma preocupação em aproveitar o potencial de interpretabilidade dos conjuntos \emph{fuzzy} para a geração e otimização de sistemas que, além de alta acurácia, sejam mais claros e interpretáveis para seres humanos \cite{Cordon2011, Fazzolari2013}.
+
+Apesar dos bons resultados produzidos por técnicas supervisionadas, é possível que os rótulos não estejam disponíveis para determinados domínios, impedindo sua aplicação. Nesses cenários costumam ser aplicadas técnicas não supervisionadas de aprendizado.
+
+\subsection{Agrupamento de Dados}
+
+Agrupamento de dados é uma típica técnica não supervisionada, ou seja, um processo capaz de realizar aprendizagem a partir de um conjunto de exemplos não rotulado. A aplicação de agrupamento tem como objetivo definir uma possível partição dos dados em grupos, de forma que exemplos semelhantes pertençam a um mesmo grupo e exemplos distintos pertençam a grupos distintos \cite{jain1999}. Essa divisão dos dados é baseada em métricas que determinam a relação de dissimilaridade ou similaridade entre diferentes exemplos.
+
+As diferentes técnicas de agrupamento podem ser divididas nas seguintes categorias \cite{han2012}:
+
+\begin{description}
+   \item[Hierárquico:] cria uma decomposição hierárquica de um conjunto de exemplos de acordo com algum critério \cite{Day1984, Kaufman1990, zhang1996};
+   \item[Particional:] constrói uma partição inicial de um conjunto de exemplos e, por meio de um processo iterativo, busca melhorar a partição, mudando exemplos de grupo baseado, geralmente, em uma medida de distância \cite{macqueen1967, Bezdek1981, Kaufman1990};
+   \item[Baseado em Densidade:] %baseado em funções densidade, é
+   capaz de criar uma partição ou uma decomposição hierárquica de um conjunto de exemplos baseado na ideia geral de que a vizinhança de cada exemplo de um grupo, dentro de um raio determinado, possui um mínimo de pontos, ou seja, a densidade na vizinhança deve exceder um limiar definido. %O formato de uma vizinhança é determinado pela escolha da função de distância utilizada analisar pares de exemplos. 
+   \cite{Ester1996, Hinneburg1998, Ankerst1999};
+   \item[Baseado em Grades:] todas as operações de agrupamento são realizadas dentro de uma estrutura de grades (\emph{grid}), que é uma divisão do espaço dos exemplos em um número finito de células \cite{Wang1997, Sheikholeslami2000}.
+\end{description}
+
+\rewrite{Uma transição menos abrupta, comentando algo sobre a estrutura obtida pelo agrupamento hierárquico (desnecessária e pode atrapalhar para alguns domínios) e para as outras categorias mencionadas, talvez? E sobre as categorias baseadas em grades (dimensão do \emph{grid} pode tornar a abordagem inviável)? E sobre baseadas em densidade... É necessário justificar o foco na abordagem particional?}
+
+O algoritmo particional $k$-\emph{means} é um dos mais populares e simples algoritmos de agrupamento, ainda sendo amplamente utilizado e, muitas vezes, servindo de base ao desenvolvimento de novos algoritmos. O objetivo do $k$-\emph{means} é agrupar os dados em $k$ grupos disjuntos, de maneira que a soma das distâncias entre os exemplos pertencentes a um grupo e seu respectivo centro seja mínima. O centróide de grupo, ou protótipo, representa o ponto médio dos pontos pertencentes a um determinado grupo.
+
+Uma variedade de técnicas agrupamento que utilizam conceitos da teoria de conjuntos \emph{fuzzy} são encontradas na literatura e visam obter melhor resultado da aprendizagem pela generalização do conceito de grupo. O \emph{Fuzzy} $C$-\emph{Means} (FCM) \cite{Bezdek1981} é uma proposta pioneira e uma das primeiras extensões \emph{fuzzy} do algoritmo $k$-\emph{means} \cite{macqueen1967}.
+
+No FCM a partição dos dados é realizada em grupos que podem ser não disjuntos, ou seja, cada exemplo está relacionado a cada grupo por um grau de pertinência. O \autoref{algo:FCM} apresenta o processo geral de agrupamento para o FCM. As variáveis de entrada são um conjunto de $n$ exemplos ($E = \{e_{1}, e_{2}, ..., e_{N}\}$), o número de grupos ($k$) para partição dos exemplos, uma constante de fuzzificação ($m > 1$) e a diferença máxima entre os centróides obtidos nas duas últimas iterações ($\xi$). Os resultados da aplicação do FCM são um conjunto de centróides finais ($C = \{c_{1}, c_{2}, ..., c_{k}\}$) e uma matriz $k \times N$ com os valores de pertinência para cada exemplo $e_{j}$ em cada grupo, representada por $U$.
+
+\input{algorithms/algoritmoFCM}
+
+A geração inicial e atualização dos centróides é calculada pela \autoref{eq:fcmAtualizaC} e as atualizações para a matriz de pertinência seguem a \autoref{eq:fcmAtualizaU}.
+
+\begin{equation}
+c_{i} = \frac{\sum_{j=1}^{n} u_{ij}^{m}e_{j}}{\sum_{j=1}^{n} u_{ij}^{m}}
+\label{eq:fcmAtualizaC}
+\end{equation}
+
+\begin{equation}
+u_{ij} = \left[\sum_{l=1}^{k}\left(\frac{\|e_{j} - c_{i}\|}{\|e_{j} - c_{l}\|}\right)^{\frac{2}{m-1}}\right]^{-1}, \forall i, j
+\label{eq:fcmAtualizaU}
+\end{equation}
+
+\citeonline{Bezdek1981} propõe ainda a versão \emph{Weighted Fuzzy} $C$-\emph{Means} (WFCM), que inclui um fator de ponderação $w_{j}$ para cada exemplo $e_{j}$ de $E$ para considerar a influência de um exemplo sobre o processo de agrupamento. No FCM o fator de ponderação é igual a 1 (um) para todos os exemplos, ou seja, todos os exemplos são igualmente importantes para o agrupamento. O \autoref{algo:WFCM} apresenta o processo geral para o WFCM. Com relação ao processo descrito para o FCM, o WFCM conta com uma entrada adicional: um vetor $w$ contendo um conjunto de pesos $\{w_{1}, w_{2}, ..., w_{n}\}$, onde $w_{j} \geq 0$ determina a influência do exemplo $e_{j}$ para o processo de agrupamento.
+
+\input{algorithms/algoritmoWFCM}
+
+As atualizações para a matriz de pertinência seguem a \autoref{eq:fcmAtualizaU}, enquanto a geração inicial e a atualização dos centróides é calculada pela \autoref{eq:wfcmAtualizaC}.
+
+\begin{equation}
+	c_{i} = \frac{\sum_{j=1}^{n} w_{j}u_{ij}^{m}e_{j}}{\sum_{j=1}^{n} w_{j}u_{ij}^{m}}
+	\label{eq:wfcmAtualizaC}
+\end{equation}
+
+\rewrite{Uma transição menos abrupta}
+
+Problemas como forte dependência de medidas de distância e normalização dos dados, definição do número correto de grupos para a divisão são observados quando aplicadas técnicas de agrupamento não supervisionadas.
+
+O crescimento acelerado de conjuntos de exemplos em muitos domínios torna a rotulação manual e total dos dados onerosa. A aplicação de técnicas supervisionadas pode ser prejudicada por utilizar apenas uma pequena quantidade de dados rotulados. Ao mesmo tempo, a utilização de técnicas não supervisionadas desconsideraria totalmente esse conhecimento prévio disponível no processo de aprendizagem. Nesse contexto, surge a ideia de aprendizado semissupervisionado, apresentada na \autoref{ChAM:semissupervisionado}.

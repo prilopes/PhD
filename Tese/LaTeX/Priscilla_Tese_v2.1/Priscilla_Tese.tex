@@ -1,0 +1,469 @@
+%% abtex2-modelo-trabalho-academico.tex, v-1.7.1 laurocesar
+%% Copyright 2012-2013 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro César Araujo. Further information are available on 
+%% http://abntex2.googlecode.com/
+%%
+%% This work consists of the files abntex2-modelo-trabalho-academico.tex,
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+% mestrado e trabalhos monograficos em geral) em conformidade com 
+% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+% Apresentacao
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão em verso e anverso. Oposto a oneside
+	a4paper,			% tamanho do papel.
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	%french,				% idioma adicional para hifenização
+	%spanish,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	inline,             % opção para o pacote enumitem que é carregado na classe - lista inline
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{cmap}				% Mapear caracteres especiais no PDF
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{subcaption}         % Inclusão de subfiguras
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage[algo2e,portuguese,ruled,vlined,linesnumbered,algochapter]{algorithm2e} %inserção de algoritmos algochapter para contar algoritmo por capítulo
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+%\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+% gambi problema do pacote algorithm2e, que escreve em espanhol ao invés de pt
+\SetKwBlock{Inicio}{in\'{i}cio}{fim}%
+\SetKwFor{Para}{para}{fa\c{c}a}{fim para}%
+\SetKwFor{ParaCada}{para cada}{fa\c{c}a}{fim para cada}%
+\SetKwFor{ParaTodo}{para todo}{fa\c{c}a}{fim para todo}%
+\renewcommand{\algorithmautorefname}{Algoritmo}
+% ---
+
+% ---
+% Configurações do abntex2/memoir
+\chapterstyle{ell} %bianchi, ell, madsen
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+% ---
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+%\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+%\renewcommand{\backref}{}
+% Define os textos da citação
+%\renewcommand*{\backrefalt}[4]{
+%	\ifcase #1 %
+%		Nenhuma citação no texto.%
+%	\or
+%		Citado na página #2.%
+%	\else
+%		Citado #1 vezes nas páginas #2.%
+%	\fi}%
+% ---
+
+% --- 
+% pintando partes do texto com comandos
+\newcommand{\rewrite}[1]{{\color[rgb]{0.75, 0, 0.2} #1}}
+% --- 
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Aprendizado em Fluxos de Dados:\\Explorando Vantagens da Teoria \emph{Fuzzy} no Contexto de Agrupamento \emph{Online} Semissupervisionado}
+\autor{Priscilla de Abreu Lopes}
+\local{São Carlos, SP, Brasil}
+\data{Setembro/2016 \\ v-1.0}
+\orientador[Orientadora:]{Profa. Dra. Heloisa de Arruda Camargo}
+%\coorientador{Equipe \abnTeX}
+\instituicao{%
+  Universidade Federal de São Carlos
+  \par
+  Centro de Ciências Exatas e de Tecnologia
+  \par
+  Programa de Pós-Graduação em Ciência da Computação}
+\tipotrabalho{Tese (Doutorado)}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Tese apresentada ao Programa de Pós-Graduação em Ciência da Computação da Universidade Federal de São Carlos, como parte dos requisitos para a obtenção do título de Doutora em Ciência da Computação, área de concentração: Inteligência Artificial.}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+%    	linkcolor=blue,          	% color of internal links
+%    	citecolor=blue,        		% color of links to bibliography
+%    	filecolor=magenta,      		% color of file links
+%		urlcolor=blue,
+    	linkcolor=black,          	% color of internal links
+    	citecolor=black,        		% color of links to bibliography
+    	filecolor=black,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Hifenização
+% ----
+\hyphenation{
+Se-mis-su-per-vi-si-o-na-do
+Se-mis-su-per-vi-si-o-na-dos
+se-mis-su-per-vi-si-o-na-do
+se-mis-su-per-vi-si-o-na-dos
+in-for-ma-ção
+learn-ing}
+% ----
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+\selectlanguage{brazil}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+\pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+%\imprimirfolhaderosto*
+%\imprimirfolhaderosto
+% ---
+
+% ---
+% Ficha Catalográfica que será incluída pela BCo
+% ---
+
+% ---
+% Errata - desnecessário
+% ---
+
+% ---
+% Inserir folha de aprovação - feito pela BCo
+% ---
+
+% ---
+% Dedicatória
+% ---
+%\input{0_Elements/dedicatoria}
+% ---
+
+% ---
+% Agradecimentos
+% ---
+%\input{0_Elements/agradecimentos}
+% ---
+
+% ---
+% Epígrafe
+% ---
+%\input{0_Elements/epigrafe}
+% ---
+
+% ---
+% RESUMOS
+% ---
+%\input{0_Elements/resumos}
+% ---
+
+% ---
+% inserir lista de ilustrações
+% ---
+%\pdfbookmark[0]{\listfigurename}{lof}
+%\listoffigures*
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+%\pdfbookmark[0]{\listtablename}{lot}
+%\listoftables*
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de algoritmos
+% ---
+% gambi para colocar a palavra Algoritmo antes de cada item da lista
+\makeatletter
+\renewcommand\numberline[1]{
+	\leftskip -0.7em
+	\rightskip 1.6em
+	\parfillskip -\rightskip
+	\parindent 0em
+	\@tempdima 2.0em
+	\vspace{0em} \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+	Algoritmo \normalfont #1 ~~ }
+\makeatother
+
+%\pdfbookmark[0]{Lista de Algoritmos}{loa}
+%\listofalgorithmes
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+\input{0_Elements/acronimos}
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+\input{0_Elements/simbolos}
+% ---
+
+% ---
+% inserir o sumario
+% ---
+% Gambi para não aparecer "Algoritmo" no sumário
+\makeatletter
+\renewcommand\numberline[1]{
+	\leftskip -0.7em
+	\rightskip 1.6em
+	\parfillskip -\rightskip
+	\parindent 0em
+	\@tempdima 2.0em
+	\vspace{0em} \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+	 \normalfont #1 ~~ }
+\makeatother
+
+\settocdepth{subsection}
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introdução
+% ----------------------------------------------------------
+\input{10_Chapter/ChIntro}
+
+% ----------------------------------------------------------
+% PARTE - Revisão Bibliográfica
+% ----------------------------------------------------------
+\part{Revisão Bibliográfica}
+
+% ----------------------------------------------------------
+% Capítulos sobre conceitos 
+% ----------------------------------------------------------
+
+
+\input{10_Chapter/ChAM}
+\input{10_Chapter/ChAFD}
+\input{10_Chapter/ChSemi}
+
+%\input{Chapter/algoritmos}
+
+% ----------------------------------------------------------
+% PARTE - Proposta
+% ----------------------------------------------------------
+\part{Proposta, Experimentos e Resultados}
+
+\input{10_Chapter/ChProposta}
+\input{10_Chapter/ChExperimentos}
+%\input{10_Chapter/ChResultados}
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+\bookmarksetup{startatroot}% 
+% ---
+
+% ---
+% Conclusão
+% ---
+%\input{Chapter/ChConclusao}
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{prilopes,publications,lingR}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+%\begin{apendicesenv}
+
+% Imprime uma página indicando o início dos apêndices
+%\partapendices
+
+% ----------------------------------------------------------
+%\chapter{Quisque libero justo}
+% ----------------------------------------------------------
+
+%\lipsum[50]
+
+% ----------------------------------------------------------
+%\chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
+%ac pretium ante justo a nulla curabitur tristique arcu eu metus}
+% ----------------------------------------------------------
+%\lipsum[55-57]
+
+%\end{apendicesenv}
+% ---
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+%\begin{anexosenv}
+
+% Imprime uma página indicando o início dos anexos
+%\partanexos
+
+% ---
+%\chapter{Morbi ultrices rutrum lorem.}
+% ---
+%\lipsum[30]
+
+% ---
+%\chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
+%parturient montes nascetur ridiculus mus}
+% ---
+
+%\lipsum[31]
+
+% ---
+%\chapter{Fusce facilisis lacinia dui}
+% ---
+
+%\lipsum[32]
+
+%\end{anexosenv}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+
+%\printindex
+
+\end{document}

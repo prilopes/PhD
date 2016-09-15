@@ -1,0 +1,18 @@
+As técnicas clássicas de AM consideram particularidades para os dados disponíveis: assume-se que o conjunto de exemplos é finito e que os exemplos seguem uma distribuição estática e estão disponíveis para acesso sempre que necessário durante o processo de aprendizagem. 
+
+A evolução e ampliação do acesso a novas tecnologias e a internet tornaram propício o surgimento e desenvolvimento de diferentes e novos domínios para os quais as características assumidas pelas abordagens clássicas de AM não são verdadeiras.
+
+Existe hoje uma variedade de sistemas que produzem grande quantidade de dados em curto espaço de tempo, como monitoração de tráfego de rede \cite{Aggarwal2008,Yu2009,Zhang2012,Breve2013}, redes de sensores \cite{gama2007,Pan2007,Zhang2012,Bouchachia2014}, mineração de \emph{clicks} na \emph{web} \cite{Marin2013}, medida de consumo de energia \cite{DeSilva2011,Zhang2012}, fraude de cartão de crédito \cite{wu2012}, mineração de textos da \emph{web} \cite{FdezRiverola2007,Cheng2011,Kmieciak2011,Nahar2014}, rastreamento visual \cite{Liu2014}, olfação artificial \cite{DeVito2012}, pesquisa meteorológica, mercado de ações e registros de supermercados \cite{Yogita2013}.
+
+Sistemas como os citados impulsionaram a pesquisa por técnicas de aprendizado capazes de lidar com as peculiaridades desses novos domínios: tamanho indefinido, potencialmente infinito, e podem gerar exemplos com distribuição estatística mutável de acordo com o tempo \cite{Gama2010}. Nesse contexto teve origem uma nova abordagem denominada Aprendizado em Fluxo de Dados (AFD).
+
+No modelo de Fluxo de Dados (FD) alguns ou todos os exemplos de entrada que serão utilizados não estão disponíveis em disco ou memória para acesso a qualquer momento, mas surgem de maneira contínua, em um ou mais fluxos. FDs diferem de conjuntos de exemplos ditos convencionais em diversos aspectos \cite{Babcock2002}:
+
+\begin{itemize}
+\item Os exemplos no fluxo chegam de maneira contínua e constante;
+\item O sistema não possui controle sobre a ordem na qual os exemplos chegam para serem processados;
+\item Os fluxos têm tamanho potencialmente infinito;
+\item Uma vez que um exemplo do FD foi processado, ele é descartado ou arquivado. Estes exemplos não podem ser recuperados de forma simples, pois guardá-los em memória ou disco seria inviável.
+\end{itemize}
+
+Devido às limitações de tempo e espaço que ocorrem por causa das peculiaridades de FDs, as técnicas de AFD devem considerar que encontrar conhecimento válido de maneira rápida é uma prioridade para esses domínios, mesmo que o encontrado seja uma aproximação do obtido caso fosse possível ter o conjunto de exemplos completo para a aplicação de AM clássico.
